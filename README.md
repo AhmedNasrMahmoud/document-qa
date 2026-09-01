@@ -29,9 +29,9 @@ ANTHROPIC_API_KEY=your-key-here
 
 ## Project Structure
 document-qa/
-├── app.py # Streamlit UI
-├── rag.py # RAG pipeline (CLI version)
-├── ask.py # Phase 1 — basic API call
-├── document.txt # Sample document
-├── .env # API key (not committed)
-└── .gitignore # Files excluded from git
+-├── app.py # Streamlit UI
+-├── rag.py # RAG pipeline (CLI version)
+-├── ask.py # Phase 1 — basic API call
+-├── document.txt # Sample document
+-├── .env # API key (not committed)
+-└── .gitignore # Files excluded from git
