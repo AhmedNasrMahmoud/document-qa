@@ -1,0 +1,21 @@
+
+    Acme Corp Refund Policy
+    
+    Customers may request a full refund within 30 days of purchase.
+    After 30 days, only store credit is available.
+    Refunds are processed within 5-7 business days.
+    To request a refund, email support@acme.com with your order number.
+    
+    Acme Corp Shipping Policy
+    
+    Standard shipping takes 3-5 business days and costs $5.99.
+    Express shipping takes 1-2 business days and costs $14.99.
+    Free shipping is available on orders over $50.
+    We ship to all 50 US states and Canada.
+    
+    Acme Corp Return Policy
+    
+    Items must be returned in original packaging.
+    Electronics cannot be returned after 15 days.
+    Clothing items can be returned within 60 days with tags attached.
+    

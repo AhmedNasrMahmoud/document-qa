@@ -1,0 +1,20 @@
+# Secret keys — never commit these
+.env
+
+# Virtual environment — too large, not needed
+venv/
+
+# ChromaDB local database
+chroma_db/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+
+# Sentence transformer model cache
+.cache/
+
+# OS files
+.DS_Store
+Thumbs.db
