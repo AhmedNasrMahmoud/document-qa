@@ -8,7 +8,7 @@ load_dotenv()
 # ── 1. SETUP ──────────────────────────────────────────────────────────────────
 
 # Load the embedding model (runs locally, no API cost)
-embedder = SentenceTransformer("all-MiniLM-L6-v2")
+embedder = SentenceTransformer("all-MiniLM-L2-v2")
 
 # Create a local ChromaDB database (saves to a folder called chroma_db)
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
