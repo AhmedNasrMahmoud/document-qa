@@ -2,6 +2,10 @@
 
 A retrieval-augmented generation (RAG) application that lets you upload documents and ask questions about them in plain English. Built as part of an FDE skills development project.
 
+**Live Demo:** [[\[document-qa.onrender.com](https://document-qa-kn5z.onrender.com/)]
+> **Note:** Hosted on Render's free tier — first load after inactivity 
+> may take 30-60 seconds to spin up. Please be patient!
+
 ## How It Works
 
 1. Upload a `.txt` document via the sidebar
