@@ -1,7 +1,7 @@
 import streamlit as st
 import chromadb
-from sentence_transformers import SentenceTransformer
 import anthropic
+import voyageai
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -15,26 +15,22 @@ st.set_page_config(
 )
 
 # Cache these so they don't reload on every interaction
-@st.cache_resource
-def load_embedder():
-    return SentenceTransformer("all-MiniLM-L6-v2")
 
 @st.cache_resource
 def load_db():
     chroma_client = chromadb.PersistentClient(path="./chroma_db")
     return chroma_client.get_or_create_collection(name="documents")
 
-embedder = load_embedder()
 collection = load_db()
 client = anthropic.Anthropic()
-
+voyage_client = voyageai.Client()
 
 # ── HELPERS ───────────────────────────────────────────────────────────────────
 
 def store_document(text: str):
     """Chunk, embed, and store a document."""
     chunks = [chunk.strip() for chunk in text.split("\n\n") if chunk.strip()]
-    embeddings = embedder.encode(chunks).tolist()
+    embeddings = voyage_client.embed(chunks, model="voyage-3").embeddings
     collection.upsert(
         ids=[f"chunk_{i}" for i in range(len(chunks))],
         documents=chunks,
@@ -44,7 +40,7 @@ def store_document(text: str):
 
 def ask(question: str) -> tuple[str, list[str]]:
     """Search for context, ask Claude, return answer + sources."""
-    question_embedding = embedder.encode([question]).tolist()
+    question_embedding = voyage_client.embed([question], model="voyage-3").embeddings
     results = collection.query(query_embeddings=question_embedding, n_results=3)
     context_chunks = results["documents"][0]
     context = "\n\n".join(context_chunks)

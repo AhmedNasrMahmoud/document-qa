@@ -1,14 +1,11 @@
 import anthropic
 import chromadb
-from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
+import voyageai
 
 load_dotenv()
 
 # ── 1. SETUP ──────────────────────────────────────────────────────────────────
-
-# Load the embedding model (runs locally, no API cost)
-embedder = SentenceTransformer("all-MiniLM-L2-v2")
 
 # Create a local ChromaDB database (saves to a folder called chroma_db)
 chroma_client = chromadb.PersistentClient(path="./chroma_db")
@@ -16,7 +13,7 @@ collection = chroma_client.get_or_create_collection(name="documents")
 
 # Anthropic client
 client = anthropic.Anthropic()
-
+voyage_client = voyageai.Client()
 
 # ── 2. STORE DOCUMENTS ────────────────────────────────────────────────────────
 
@@ -32,7 +29,7 @@ def load_and_store(filepath: str):
     print(f"Storing {len(chunks)} chunks from {filepath}...")
 
     # Convert chunks to vectors
-    embeddings = embedder.encode(chunks).tolist()
+    embeddings = voyage_client.embed(chunks, model="voyage-3").embeddings
 
     # Store in ChromaDB (each chunk needs a unique ID)
     collection.upsert(
@@ -49,7 +46,7 @@ def load_and_store(filepath: str):
 def search(question: str, n_results: int = 3) -> list[str]:
     """Convert question to vector, find the closest matching chunks."""
 
-    question_embedding = embedder.encode([question]).tolist()
+    question_embedding = voyage_client.embed([question], model="voyage-3").embeddings
 
     results = collection.query(
         query_embeddings=question_embedding,

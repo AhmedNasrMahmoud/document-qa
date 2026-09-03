@@ -12,7 +12,7 @@ A retrieval-augmented generation (RAG) application that lets you upload document
 ## Tech Stack
 
 - **LLM:** Anthropic Claude (claude-sonnet-4-6)
-- **Embeddings:** sentence-transformers (all-MiniLM-L6-v2)
+- **Embeddings:** Voyage AI (voyage-3)
 - **Vector DB:** ChromaDB
 - **UI:** Streamlit
 - **Language:** Python
@@ -25,6 +25,7 @@ A retrieval-augmented generation (RAG) application that lets you upload document
 4. Install dependencies: `pip install -r requirements.txt`
 5. Create a `.env` file with your Anthropic API key:
 ANTHROPIC_API_KEY=your-key-here
+VOYAGE_API_KEY=your-key-here
 6. Run the app: `streamlit run app.py`
 
 ## Project Structure
