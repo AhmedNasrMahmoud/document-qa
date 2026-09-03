@@ -3,9 +3,9 @@ services:
     name: document-qa
     runtime: python
     buildCommand: pip install -r requirements.txt
-    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
-envVars:
-  - key: ANTHROPIC_API_KEY
-    sync: false
-  - key: VOYAGE_API_KEY
-    sync: false
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true --server.enableCORS false --server.enableXsrfProtection false
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: VOYAGE_API_KEY
+        sync: false
